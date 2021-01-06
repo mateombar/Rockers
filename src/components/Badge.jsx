@@ -1,27 +1,27 @@
 import React from "react";
 import greenBanner from "../assets/banners/green-banner.svg";
-import pic from "../assets/images/me.jpg";
 
 import "./styles/Badge.css";
 class Badge extends React.Component {
   render() {
+    const data = this.props.data;
     return (
       <article className="badge">
         <header className="badge_header">
           <img src={greenBanner} alt="header-banner" />
           <div className="header_info">
-            <h1>MATEHUS BARONASISIMOAS</h1>
+            <h1>{data.firstName.toUpperCase()} {data.lastName.toUpperCase()}</h1>
             <h5>TERRICOLA</h5>
           </div>
         </header>
         <section className="profile">
           <div className="profile_photo">
-            <img src={pic} alt="user-profile" />
+            <img src={data.avatarUrl} alt="user-profile" />
           </div>
           <div className="profile_description">
-            <h4>Nationality: Terricola</h4>
-            <p>Hombre comun, estatura promedio que come mucho y hace ejercicio</p>
-            <small>Status: Alive</small>
+            <h4>Nationality: {data.nationality}</h4>
+            <p>{data.description}</p>
+            <small>Status: {data.status}</small>
           </div>
         </section>
         <footer>
