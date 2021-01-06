@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Badge from "../components/Badge";
+import Badgeform from "../components/Badgeform";
 import "./styles/BadgeNew.css";
 class BadgeNew extends React.Component {
   render() {
@@ -18,9 +19,7 @@ class BadgeNew extends React.Component {
       <div className="badgenew">
         <Navbar />
         <article className="badgenew__article">
-          <form>
-            <p>hoooola</p>
-          </form>
+          <Badgeform/>
           <Badge data={data} />
         </article>
       </div>
