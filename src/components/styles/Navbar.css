@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-color: #559574;
+}
+.icon {
+  color: white;
+  text-decoration: none;
+  padding: 14px 16px;
+}
+.icon .icon_logo {
+  font-size: 1.5rem;
+  margin-right: 7px;
+  padding: 3px;
+  margin-right: 10px;
+}
+.icon .icon_title {
+  font-size: 1.3rem;
+}
+
+.views {
+  margin-right: 5px;
+  list-style: none;
+}
+.view_item {
+  float: left;
+  text-decoration: none;
+}
+.view_item a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.hamburger{
+    display: none;
+}
