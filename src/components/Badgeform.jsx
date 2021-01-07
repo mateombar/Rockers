@@ -10,6 +10,7 @@ class Badgeform extends React.Component {
                 <label >First Name</label>
                 <input type="text" name="firstName"/>
             </div>
+            <button className="form-button">Save</button>
         </form>
       </div>
     );
