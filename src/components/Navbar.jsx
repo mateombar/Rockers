@@ -12,9 +12,9 @@ class Navbar extends React.Component{
                     <li className="view_item"><a href="/badges">Badges</a></li>
                     <li className="view_item"><a href="/about">About</a></li>
                 </ul>
-                <a className="hamburger">
+                {/* <a className="hamburger">
                     <i className="fas fa-bars"></i>
-                </a>
+                </a> */}
             </header>
         )
     }
