@@ -1,12 +1,16 @@
 import './App.css';
 
-import BadgeNew from './pages/BadgeNew';
+// import BadgeNew from './pages/BadgeNew';
+import Navbar from "./components/Navbar";
+import DashBoard from './pages/DashBoard';
 
 function App() {
 
   return (
     <div className="App">
-      <BadgeNew />
+      <Navbar />
+      {/* <BadgeNew /> */}
+      <DashBoard />
     </div>
   );
 }

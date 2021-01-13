@@ -1,0 +1,61 @@
+.home__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 3% 0%;
+}
+
+.home__container .filter {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.filter .filter__input {
+  width: 50%;
+  padding: 0.5rem;
+  border: 2px solid #559574;
+  border-radius: 25px;
+  outline: none;
+}
+.filter__select label {
+  padding: 0.5rem;
+}
+.filter__select select {
+  width: 150px;
+  padding: 0.5rem;
+  border: 2px solid #559574;
+  border-radius: 25px;
+  outline: none;
+}
+.home__container .new__badge {
+  width: 90%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top:3%;
+}
+.new__badge a{
+  width: 150px;
+  padding: 0.5rem;
+  color: white;
+  background-color: #559574;
+  border-radius: 25px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+}
+
+.home__container .badges__container {
+  margin-top:3%;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 500px) {
+  .filter .filter__input {
+    width: 40%;
+  }
+  .filter__select select {
+    width: 100px;
+  }
+}

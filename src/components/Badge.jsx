@@ -14,7 +14,7 @@ class Badge extends React.Component {
               <h1>
                 {data.firstName.toUpperCase()} {data.lastName.toUpperCase()}
               </h1>
-              <h5>TERRICOLA</h5>
+              <h5>{data.origin}</h5>
             </div>
           </header>
           <section className="profile">
@@ -22,7 +22,7 @@ class Badge extends React.Component {
               <img src={data.avatarUrl} alt="user-profile" />
             </div>
             <div className="profile_description">
-              <h4>Nationality: {data.nationality}</h4>
+              <h4>Origin: {data.origin}</h4>
               <p>{data.description}</p>
               <small>Status: {data.status}</small>
             </div>
