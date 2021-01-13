@@ -28,7 +28,7 @@ class Badge extends React.Component {
             </div>
           </section>
           <footer>
-            <h5>"Peace and love"</h5>
+            <h5>"{data.quote}"</h5>
           </footer>
         </article>
       </div>

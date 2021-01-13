@@ -1,19 +1,6 @@
 import React from "react";
 import "./styles/Badgeform.css";
 class Badgeform extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-    origin: "",
-    description: "",
-    status: "",
-    quote: "",
-  };
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
   handleClick = (e) => {
     console.log("clicked");
   };
@@ -29,29 +16,39 @@ class Badgeform extends React.Component {
             <label>First Name</label>
             <input
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               type="text"
               name="firstName"
-              value={this.state.firstName}
+              value={this.props.formValues.firstName}
             />
           </div>
           <div className="form-group">
             <label>Last Name</label>
             <input
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               type="text"
               name="lastName"
-              value={this.state.lastName}
+              value={this.props.formValues.lastName}
+            />
+          </div>
+          <div className="form-group">
+            <label>Gravatar Url</label>
+            <input
+              className="form-group__input"
+              onChange={this.props.onChange}
+              type="text"
+              name="avatarUrl"
+              value={this.props.formValues.avatarUrl}
             />
           </div>
           <div className="form-group">
             <label>Origin</label>
             <select
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               name="origin"
-              value={this.state.origin}
+              value={this.props.formValues.origin}
             >
               <option value="Earth">Earth</option>
               <option value="Mars">Mars</option>
@@ -63,19 +60,19 @@ class Badgeform extends React.Component {
             <label>Description</label>
             <input
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               type="text"
               name="description"
-              value={this.state.description}
+              value={this.props.formValues.description}
             />
           </div>
           <div className="form-group">
             <label>Status</label>
             <select
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               name="status"
-              value={this.state.status}
+              value={this.props.formValues.status}
             >
               <option value="Alive">Alive</option>
               <option value="Death">Death</option>
@@ -86,10 +83,10 @@ class Badgeform extends React.Component {
             <label>Quote</label>
             <input
               className="form-group__input"
-              onChange={this.handleChange}
+              onChange={this.props.onChange}
               type="text"
               name="quote"
-              value={this.state.quote}
+              value={this.props.formValues.quote}
             />
           </div>
           <button onClick={this.handleClick} className="form-button">
