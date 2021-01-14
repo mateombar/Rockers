@@ -9,7 +9,7 @@ class BadgeNew extends React.Component {
       lastName: "",
       avatarUrl: "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
       origin: "",
-      description: "",
+      position: "",
       status: "",
       quote: "",
     },

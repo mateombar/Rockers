@@ -23,7 +23,7 @@ class Badge extends React.Component {
             </div>
             <div className="profile_description">
               <h4>Origin: {data.origin}</h4>
-              <p>{data.description}</p>
+              <p>{data.position}</p>
               <small>Status: {data.status}</small>
             </div>
           </section>

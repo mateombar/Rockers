@@ -1,5 +1,5 @@
 import React from "react";
-import RockerItem from '../components/RockerItem';
+import RockerBadge from '../components/RockerBadge';
 import "./styles/DashBoard.css";
 class DashBoard extends React.Component {
   state = {
@@ -11,9 +11,9 @@ class DashBoard extends React.Component {
         lastName: "Grady",
         avatarUrl: "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon",
         origin: "Earth",
-        description: "Legacy Brand Director",
+        position: "Legacy Brand Director",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "d00d3614-101a-44ca-b6c2-0be075aeed3d",
@@ -21,9 +21,9 @@ class DashBoard extends React.Component {
         lastName: "Rodriguez",
         avatarUrl: "https://www.gravatar.com/avatar/d57a8be8cb9219609905da25d5f3e50a?d=identicon",
         origin: "Mars",
-        description: "Human Research Architect",
+        position: "Human Research Architect",
         status: "Alive",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "63c03386-33a2-4512-9ac1-354ad7bec5e9",
@@ -31,9 +31,9 @@ class DashBoard extends React.Component {
         lastName: "Torphy",
         avatarUrl: "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon",
         origin: "Juno",
-        description: "National Markets Officer",
+        position: "National Markets Officer",
         status: "Alive",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "001",
@@ -42,10 +42,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "002",
@@ -54,10 +53,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "003",
@@ -66,10 +64,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "004",
@@ -78,10 +75,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "005",
@@ -90,10 +86,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
       {
         id: "006",
@@ -102,10 +97,9 @@ class DashBoard extends React.Component {
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
         origin: "Earth",
-        description:
-          "Mujer normal, trabaja en un centro comercial, le gusta comer gente",
+        position: "Software Engineer",
         status: "Death",
-        quote: "No te fies de nadie",
+        quote: "Tengo hambre",
       },
     ],
   };
@@ -131,7 +125,7 @@ class DashBoard extends React.Component {
           <ul className="badges__container--list">
             {this.state.data.map((badge) => {
               return (
-                <RockerItem data={badge} key={badge.id}/>                
+                <RockerBadge data={badge} key={badge.id}/>                
               );
             })}
           </ul>
