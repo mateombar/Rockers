@@ -13,7 +13,8 @@
 }
 .filter .filter__input {
   width: 50%;
-  padding: 0.5rem;
+  height: 30px;
+  padding: 0.3rem;
   border: 2px solid #559574;
   border-radius: 25px;
   outline: none;
@@ -23,7 +24,8 @@
 }
 .filter__select select {
   width: 150px;
-  padding: 0.5rem;
+  height: 30px;
+  padding: 0.3rem;
   border: 2px solid #559574;
   border-radius: 25px;
   outline: none;
@@ -36,13 +38,16 @@
 }
 .new__badge a{
   width: 150px;
-  padding: 0.5rem;
+  height: 30px;
+  padding: 0.3rem;
   color: white;
   background-color: #559574;
   border-radius: 25px;
   outline: none;
-  text-align: center;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .home__container .badges__container {
