@@ -7,7 +7,7 @@ class BadgeNew extends React.Component {
     form: {
       firstName: "",
       lastName: "",
-      avatarUrl: "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
+      avatarUrl: "",
       origin: "",
       position: "",
       status: "",
@@ -22,11 +22,23 @@ class BadgeNew extends React.Component {
       },
     });
   };
+  handleImage = (url) =>{
+    this.setState({
+      form: {
+        ...this.state.form,
+        avatarUrl: url,
+      },
+    });
+  }
   render() {
     return (
       <div className="badgenew">
         <article className="badgenew__article">
-          <Badgeform onChange={this.handleChange} formValues={this.state.form}/>
+          <Badgeform
+            onChange={this.handleChange}
+            handleImage={this.handleImage}
+            formValues={this.state.form}
+          />
           <Badge data={this.state.form} />
         </article>
       </div>

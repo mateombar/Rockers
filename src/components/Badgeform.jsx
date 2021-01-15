@@ -7,6 +7,22 @@ class Badgeform extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
   };
+  constructor(props) {
+    super(props);
+    this.handleImage = this.handleImage.bind(this);
+    this.fileInput = React.createRef();
+  }
+  handleImage(event) {
+    event.preventDefault();
+    const reader = new FileReader();
+    const file = this.fileInput.current.files[0];
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+    reader.onloadend = () => {
+      this.props.handleImage(reader.result)
+    };
+  }
   render() {
     return (
       <div className="badgeform">
@@ -36,10 +52,13 @@ class Badgeform extends React.Component {
             <label>Gravatar Url</label>
             <input
               className="form-group__input"
-              onChange={this.props.onChange}
-              type="text"
+              onChange={this.handleImage}
+              type="file"
+              id="avatarUrl"
+              accept="image/png, image/jpeg"
               name="avatarUrl"
-              value={this.props.formValues.avatarUrl}
+              ref={this.fileInput}
+              // value={this.props.formValues.avatarUrl}
             />
           </div>
           <div className="form-group">
