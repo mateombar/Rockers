@@ -64,8 +64,29 @@
   width: 500px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
   border-radius: 10px;
+}
+.badges__container .badges__container--pagination{
+  margin: 10px 0;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.badges__container--pagination button{
+  width: 70px;
+  height: 80%;
+  padding: 0.3rem;
+  border: 2px solid #559574;
+  color: white;
+  background-color: #559574;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .badges__container ul{
   width: 90%;

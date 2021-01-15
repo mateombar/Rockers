@@ -6,14 +6,14 @@ class RockerBadge extends React.Component {
     return (
       <article className="rocker_badge">
         <div className="rocker_avatar">
-          <img src={data.avatarUrl} alt={`${data.firstName} avatar`} />
+          <img src={data.image} alt={`${data.name} avatar`} />
         </div>
         <div className="rocker_info">
-          <h3>{data.firstName} {data.lastName}</h3>
-          <p><strong>{data.email}</strong></p>
+          <h3>{data.name}</h3>
+          <p><strong>{data.gender}</strong></p>
           <p><strong>{data.status}</strong></p>
-          <pre>{data.position}</pre>
-          <i>{data.quote}</i>
+          <pre>{data.species}</pre>
+          <i>{data.origin.name}</i>
         </div>
       </article>
     );

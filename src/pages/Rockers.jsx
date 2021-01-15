@@ -1,112 +1,69 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import RockerBadge from "../components/RockerBadge";
+import Loader from "../components/Loader";
 import "./styles/Rockers.css";
 class Rockers extends React.Component {
-  state = {
-    data: [
-      {
-        id: "2de30c42-9deb-40fc-a41f-05e62b5939a7",
-        firstName: "Freda",
-        lastName: "Grady",
-        avatarUrl:
-          "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon",
-        email: "Earth",
-        position: "Legacy Brand Director",
-        status: "Death",
-        quote: "Tengo hambre",
+  constructor(props) {
+    super(props);
+    this.state = {
+      actualPage: 1,
+      loading: true,
+      error: null,
+      data: {
+        results: [],
       },
-      {
-        id: "d00d3614-101a-44ca-b6c2-0be075aeed3d",
-        firstName: "Major",
-        lastName: "Rodriguez",
-        avatarUrl:
-          "https://www.gravatar.com/avatar/d57a8be8cb9219609905da25d5f3e50a?d=identicon",
-        email: "Mars",
-        position: "Human Research Architect",
-        status: "Alive",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "63c03386-33a2-4512-9ac1-354ad7bec5e9",
-        firstName: "Daphney",
-        lastName: "Torphy",
-        avatarUrl:
-          "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon",
-        email: "Juno",
-        position: "National Markets Officer",
-        status: "Alive",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "001",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "002",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "003",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "004",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "005",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-      {
-        id: "006",
-        firstName: "Lupita",
-        lastName: "Lopez",
-        avatarUrl:
-          "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        email: "Earth",
-        position: "Software Engineer",
-        status: "Death",
-        quote: "Tengo hambre",
-      },
-    ],
+    };
+  }
+  componentDidMount() {
+    this.fetchCharacters();
+  }
+  componentDidUpdate() {}
+  componentWillUnmount() {
+    clearTimeout(this.timeoutId);
+  }
+  pagination = async (page) => {
+    await this.setState({
+      actualPage: this.state.actualPage + page,
+      data: { info: this.state.data.info, results: [] },
+    });
+    if (this.state.actualPage > this.state.data.info.pages) {
+      this.setState({
+        actualPage: 1,
+      });
+    }
+    if (this.state.actualPage <= 0) {
+      this.setState({
+        actualPage: this.state.data.info.pages,
+      });
+    }
+    this.fetchCharacters();
+  };
+
+  fetchCharacters = async () => {
+    this.setState({ loading: true, error: null });
+    const response = await fetch(
+      `https://rickandmortyapi.com/api/character/?page=${this.state.actualPage}`
+    );
+    const data = await response.json();
+    setTimeout(() => {
+      try {
+        this.setState({
+          loading: false,
+          data: data,
+        });
+      } catch (error) {
+        this.setState({
+          loading: false,
+          error: error,
+        });
+      }
+    }, 500);
   };
   render() {
+    if (this.state.error) {
+      return `Error: ${this.state.error.message}`;
+    }
     return (
       <div className="rocker__container">
         <div className="card">
@@ -123,11 +80,36 @@ class Rockers extends React.Component {
             <Link to="/rockers/new">New Badge</Link>
           </section>
           <section className="badges__container">
+            {!this.state.loading && (
+              <div className="badges__container--pagination">
+                <button onClick={() => this.pagination(-1)} className="prev">
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                <button onClick={() => this.pagination(1)} className="next">
+                  <i className="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            )}
+            {this.state.loading && (
+              <section className="loader__container">
+                <Loader />
+              </section>
+            )}
             <ul className="badges__container--list">
-              {this.state.data.map((badge) => {
+              {this.state.data.results.map((badge) => {
                 return <RockerBadge data={badge} key={badge.id} />;
               })}
             </ul>
+            {!this.state.loading && (
+              <div className="badges__container--pagination">
+                <button onClick={() => this.pagination(-1)} className="prev">
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                <button onClick={() => this.pagination(1)} className="next">
+                  <i className="fas fa-chevron-right"></i>
+                </button>
+              </div>
+            )}
           </section>
         </div>
       </div>
