@@ -4,7 +4,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  background-color: #559574;
+  background-image: linear-gradient(to right, #559574 , #6bc295);
 }
 .icon {
   color: white;
@@ -36,7 +36,30 @@
   text-align: center;
   padding: 14px 16px;
 }
+.banner{
+  background-image: linear-gradient(to right, #559574 , #6bc295);
+  display: flex;
+  justify-content: center ;
+  padding: 0px 30px 30px 30px;
+  height: 150px;
+}
 
-.hamburger{
-    display: none;
+.banner .banner__info{
+  margin-top: -40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner .banner__info img{
+  width: 3rem;
+}
+.banner .banner__info h2{
+  font-size: 3rem;
+  color: white;
+}
+
+@media only screen and (max-width: 600px){
+  .banner{
+    padding: 0px 5px 5px 5px;
+  }
 }
