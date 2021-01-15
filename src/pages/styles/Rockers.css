@@ -1,12 +1,20 @@
-.home__container {
+.rocker__container {
+  display: flex;
+  justify-content: center;
+  
+}
+.rocker__container .card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-color: white;
+  width: 60%;
+  padding: 3% 0%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: 3% 0%;
 }
-
-.home__container .filter {
+.card .filter {
   width: 90%;
   display: flex;
   justify-content: space-between;
@@ -30,7 +38,7 @@
   border-radius: 25px;
   outline: none;
 }
-.home__container .new__badge {
+.card .new__badge {
   width: 90%;
   display: flex;
   justify-content: flex-end;
@@ -50,23 +58,32 @@
   justify-content: center;
 }
 
-.home__container .badges__container {
+.card .badges__container {
   margin-top:3%;
   width: 500px;
   display: flex;
   justify-content: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
 }
 .badges__container ul{
   width: 90%;
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
   .filter .filter__input {
     width: 40%;
   }
   .filter__select select {
     width: 100px;
   }
-  .home__container .badges__container {
-    width: 100%;
+  .rocker__container .badges__container {
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 746px) {
+  .rocker__container .card{
+
+    width: 90%;
+    padding: 3% 0%;
   }
 }

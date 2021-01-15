@@ -49,7 +49,7 @@ class Badgeform extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>Gravatar Url</label>
+            <label>Rocker Image</label>
             <input
               className="form-group__input"
               onChange={this.handleImage}
@@ -62,18 +62,14 @@ class Badgeform extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>Origin</label>
-            <select
+            <label>Email</label>
+            <input
               className="form-group__input"
               onChange={this.props.onChange}
-              name="origin"
-              value={this.props.formValues.origin}
-            >
-              <option value="Earth">Earth</option>
-              <option value="Mars">Mars</option>
-              <option value="Juno">Juno</option>
-              <option value="Your mom">Your mom</option>
-            </select>
+              type="text"
+              name="email"
+              value={this.props.formValues.email}
+            />
           </div>
           <div className="form-group">
             <label>Position</label>
@@ -93,9 +89,10 @@ class Badgeform extends React.Component {
               name="status"
               value={this.props.formValues.status}
             >
-              <option value="Alive">Alive</option>
-              <option value="Death">Death</option>
-              <option value="Unknown">Unknown</option>
+              <option value="Available">Available</option>
+              <option value="Working">Working</option>
+              <option value="Unemployed">Unemployed</option>
+              <option value="No Available">No Available</option>
             </select>
           </div>
           <div className="form-group">

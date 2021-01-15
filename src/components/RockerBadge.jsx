@@ -10,7 +10,8 @@ class RockerBadge extends React.Component {
         </div>
         <div className="rocker_info">
           <h3>{data.firstName} {data.lastName}</h3>
-          <strong>{data.origin} - {data.status}</strong>
+          <p><strong>{data.email}</strong></p>
+          <p><strong>{data.status}</strong></p>
           <pre>{data.position}</pre>
           <i>{data.quote}</i>
         </div>

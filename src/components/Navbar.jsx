@@ -7,10 +7,8 @@ function Navbar() {
     <React.Fragment>
       <header className="navbar">
         <Link className="icon" to="/">
-          <span className="icon_logo">
-            <i className="fas fa-chess-rook"></i>
-          </span>
-          <span className="icon_title">Tower</span>
+          <img className="icon_logo" src={hand} alt="" />
+          <span className="icon_title">Rock</span>
         </Link>
         <ul className="views">
           <li className="view_item">

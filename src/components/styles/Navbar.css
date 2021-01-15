@@ -10,9 +10,12 @@
   color: white;
   text-decoration: none;
   padding: 14px 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .icon .icon_logo {
-  font-size: 1.5rem;
+  width: 2rem;
   margin-right: 7px;
   padding: 3px;
   margin-right: 10px;

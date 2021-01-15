@@ -11,7 +11,7 @@ class Rockers extends React.Component {
         lastName: "Grady",
         avatarUrl:
           "https://www.gravatar.com/avatar/f63a9c45aca0e7e7de0782a6b1dff40b?d=identicon",
-        origin: "Earth",
+        email: "Earth",
         position: "Legacy Brand Director",
         status: "Death",
         quote: "Tengo hambre",
@@ -22,7 +22,7 @@ class Rockers extends React.Component {
         lastName: "Rodriguez",
         avatarUrl:
           "https://www.gravatar.com/avatar/d57a8be8cb9219609905da25d5f3e50a?d=identicon",
-        origin: "Mars",
+        email: "Mars",
         position: "Human Research Architect",
         status: "Alive",
         quote: "Tengo hambre",
@@ -33,7 +33,7 @@ class Rockers extends React.Component {
         lastName: "Torphy",
         avatarUrl:
           "https://www.gravatar.com/avatar/e74e87d40e55b9ff9791c78892e55cb7?d=identicon",
-        origin: "Juno",
+        email: "Juno",
         position: "National Markets Officer",
         status: "Alive",
         quote: "Tengo hambre",
@@ -44,7 +44,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -55,7 +55,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -66,7 +66,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -77,7 +77,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -88,7 +88,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -99,7 +99,7 @@ class Rockers extends React.Component {
         lastName: "Lopez",
         avatarUrl:
           "https://s.gravatar.com/avatar/c930c6ba7c0e62a1bf7f51cb4e255e5d?s=80",
-        origin: "Earth",
+        email: "Earth",
         position: "Software Engineer",
         status: "Death",
         quote: "Tengo hambre",
@@ -108,28 +108,29 @@ class Rockers extends React.Component {
   };
   render() {
     return (
-      <section className="home__container">
-        <div className="filter">
-          <input className="filter__input" type="text" placeholder="Search" />
-          <div className="filter__select">
-            <label>Filter</label>
-            <select name="filter_select">
-              <option value="status">Status</option>
-              <option value="origin">Origin</option>
-            </select>
-          </div>
+      <div className="rocker__container">
+        <div className="card">
+          <section className="filter">
+            <input className="filter__input" type="text" placeholder="Search" />
+            <div className="filter__select">
+              <label>Filter</label>
+              <select name="filter_select">
+                <option value="status">Status</option>
+              </select>
+            </div>
+          </section>
+          <section className="new__badge">
+            <Link to="/rockers/new">New Badge</Link>
+          </section>
+          <section className="badges__container">
+            <ul className="badges__container--list">
+              {this.state.data.map((badge) => {
+                return <RockerBadge data={badge} key={badge.id} />;
+              })}
+            </ul>
+          </section>
         </div>
-        <div className="new__badge">
-          <Link to="/rockers/new">New Badge</Link>
-        </div>
-        <div className="badges__container">
-          <ul className="badges__container--list">
-            {this.state.data.map((badge) => {
-              return <RockerBadge data={badge} key={badge.id} />;
-            })}
-          </ul>
-        </div>
-      </section>
+      </div>
     );
   }
 }

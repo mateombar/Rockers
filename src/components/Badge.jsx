@@ -22,7 +22,7 @@ class Badge extends React.Component {
               <img src={data.avatarUrl} alt="user-profile" />
             </div>
             <div className="profile_description">
-              <h4>Origin: {data.origin}</h4>
+              <h4>{data.email}</h4>
               <p>{data.position}</p>
               <small>Status: {data.status}</small>
             </div>

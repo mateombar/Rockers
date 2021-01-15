@@ -8,7 +8,7 @@ class BadgeNew extends React.Component {
       firstName: "",
       lastName: "",
       avatarUrl: "",
-      origin: "",
+      email: "",
       position: "",
       status: "",
       quote: "",
