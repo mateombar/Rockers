@@ -5,6 +5,7 @@ import BadgeNew from './pages/BadgeNew';
 import NotFound from './pages/NotFound';
 
 import Rockers from './pages/Rockers';
+import Home from './pages/Home';
 
 function App() {
 
@@ -12,8 +13,8 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Layout>
-          
           <Switch>
+            <Route exact path="/" component={Home} />
             <Route exact path="/rockers" component={Rockers} />
             <Route exact path="/rockers/new" component={BadgeNew} />
             <Route component={NotFound}/>
