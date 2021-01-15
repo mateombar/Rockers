@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import BadgeNew from './pages/BadgeNew';
+import RockerNew from './pages/RockerNew';
 import NotFound from './pages/NotFound';
 
 import Rockers from './pages/Rockers';
@@ -16,7 +16,7 @@ function App() {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/rockers" component={Rockers} />
-            <Route exact path="/rockers/new" component={BadgeNew} />
+            <Route exact path="/rockers/new" component={RockerNew} />
             <Route component={NotFound}/>
           </Switch>
         </Layout>

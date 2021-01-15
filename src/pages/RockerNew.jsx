@@ -1,8 +1,8 @@
 import React from "react";
-import Badge from "../components/Badge";
-import Badgeform from "../components/Badgeform";
-import "./styles/BadgeNew.css";
-class BadgeNew extends React.Component {
+import Rocker from "../components/Rocker";
+import Rockerform from "../components/Rockerform";
+import "./styles/RockerNew.css";
+class RockerNew extends React.Component {
   state = {
     form: {
       firstName: "",
@@ -32,18 +32,18 @@ class BadgeNew extends React.Component {
   }
   render() {
     return (
-      <div className="badgenew">
-        <article className="badgenew__article">
-          <Badgeform
+      <div className="rockernew">
+        <article className="rockernew__article">
+          <Rockerform
             onChange={this.handleChange}
             handleImage={this.handleImage}
             formValues={this.state.form}
           />
-          <Badge data={this.state.form} />
+          <Rocker data={this.state.form} />
         </article>
       </div>
     );
   }
 }
 
-export default BadgeNew;
+export default RockerNew;

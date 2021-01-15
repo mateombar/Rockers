@@ -1,6 +1,6 @@
 import React from "react";
-import "./styles/Badgeform.css";
-class Badgeform extends React.Component {
+import "./styles/Rockerform.css";
+class Rockerform extends React.Component {
   handleClick = (e) => {
     console.log("clicked");
   };
@@ -20,13 +20,15 @@ class Badgeform extends React.Component {
       reader.readAsDataURL(file);
     }
     reader.onloadend = () => {
-      this.props.handleImage(reader.result)
+      this.props.handleImage(reader.result);
     };
   }
   render() {
     return (
-      <div className="badgeform">
-        <h1>New Rocker</h1>
+      <div className="rockerform">
+        <header>
+          <h1>New Rocker</h1>
+        </header>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>First Name</label>
@@ -114,4 +116,4 @@ class Badgeform extends React.Component {
   }
 }
 
-export default Badgeform;
+export default Rockerform;
