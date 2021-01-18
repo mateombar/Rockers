@@ -45,7 +45,7 @@
   justify-content: flex-end;
   margin-top:3%;
 }
-.new__badge a{
+.link_button{
   width: 150px;
   height: 30px;
   padding: 0.3rem;

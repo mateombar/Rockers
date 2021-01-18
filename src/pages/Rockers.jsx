@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import RockerBadge from "../components/RockerBadge";
 import Loader from "../components/Loader";
+import api from "../api";
 import "./styles/Rockers.css";
 class Rockers extends React.Component {
   constructor(props) {
@@ -10,9 +11,7 @@ class Rockers extends React.Component {
       actualPage: 1,
       loading: true,
       error: null,
-      data: {
-        results: [],
-      },
+      data: [],
     };
   }
   componentDidMount() {
@@ -42,28 +41,24 @@ class Rockers extends React.Component {
 
   fetchCharacters = async () => {
     this.setState({ loading: true, error: null });
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character/?page=${this.state.actualPage}`
-    );
-    const data = await response.json();
-    setTimeout(() => {
-      try {
-        this.setState({
-          loading: false,
-          data: data,
-        });
-      } catch (error) {
-        this.setState({
-          loading: false,
-          error: error,
-        });
-      }
-    }, 500);
+    // const response = await fetch(
+    //   `https://rickandmortyapi.com/api/character/?page=${this.state.actualPage}`
+    // );
+    // const data = await response.json();
+    try {
+      const data = await api.rockers.list();
+      this.setState({
+        loading: false,
+        data: data,
+      });
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error: error,
+      });
+    }
   };
   render() {
-    if (this.state.error) {
-      return `Error: ${this.state.error.message}`;
-    }
     return (
       <div className="rocker__container">
         <div className="card">
@@ -77,40 +72,55 @@ class Rockers extends React.Component {
             </div>
           </section>
           <section className="new__badge">
-            <Link to="/rockers/new">New Badge</Link>
+            <Link className="link_button" to="/rockers/new">
+              New Rocker
+            </Link>
           </section>
-          <section className="badges__container">
-            {!this.state.loading && (
-              <div className="badges__container--pagination">
-                <button onClick={() => this.pagination(-1)} className="prev">
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <button onClick={() => this.pagination(1)} className="next">
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            )}
-            {this.state.loading && (
-              <section className="loader__container">
-                <Loader />
-              </section>
-            )}
-            <ul className="badges__container--list">
-              {this.state.data.results.map((badge) => {
-                return <RockerBadge data={badge} key={badge.id} />;
-              })}
-            </ul>
-            {!this.state.loading && (
-              <div className="badges__container--pagination">
-                <button onClick={() => this.pagination(-1)} className="prev">
-                  <i className="fas fa-chevron-left"></i>
-                </button>
-                <button onClick={() => this.pagination(1)} className="next">
-                  <i className="fas fa-chevron-right"></i>
-                </button>
-              </div>
-            )}
-          </section>
+
+          {this.state.error && `${this.state.error.message}`}
+
+          {this.state.loading && (
+            <section className="loader__container">
+              <Loader />
+            </section>
+          )}
+          {this.state.data.length === 0 && this.state.loading === false ? (
+            <div>
+              <h3>Rockers Not found</h3>
+              <Link className="link_button" to="/rockers/new">
+                Create a Rocker
+              </Link>
+            </div>
+          ) : (
+            <section className="badges__container">
+              {!this.state.loading && (
+                <div className="badges__container--pagination">
+                  <button onClick={() => this.pagination(-1)} className="prev">
+                    <i className="fas fa-chevron-left"></i>
+                  </button>
+                  <button onClick={() => this.pagination(1)} className="next">
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              )}
+
+              <ul className="badges__container--list">
+                {this.state.data.map((rocker) => {
+                  return <RockerBadge data={rocker} key={rocker.id} />;
+                })}
+              </ul>
+              {!this.state.loading && (
+                <div className="badges__container--pagination">
+                  <button onClick={() => this.pagination(-1)} className="prev">
+                    <i className="fas fa-chevron-left"></i>
+                  </button>
+                  <button onClick={() => this.pagination(1)} className="next">
+                    <i className="fas fa-chevron-right"></i>
+                  </button>
+                </div>
+              )}
+            </section>
+          )}
         </div>
       </div>
     );
