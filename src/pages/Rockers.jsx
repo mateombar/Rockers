@@ -9,6 +9,7 @@ class Rockers extends React.Component {
     super(props);
     this.state = {
       actualPage: 1,
+      pageSize: 5,
       loading: true,
       error: null,
       data: [],
@@ -46,7 +47,7 @@ class Rockers extends React.Component {
     // );
     // const data = await response.json();
     try {
-      const data = await api.rockers.list();
+      const data = await api.rockers.list(this.state.pageSize, this.state.actualPage);
       this.setState({
         loading: false,
         data: data,
@@ -58,6 +59,11 @@ class Rockers extends React.Component {
       });
     }
   };
+  handdlePageSize = (e) =>{
+    this.setState({
+      pageSize: Number(e.target.value)
+    })
+  }
   render() {
     return (
       <div className="rocker__container">
@@ -65,9 +71,10 @@ class Rockers extends React.Component {
           <section className="filter">
             <input className="filter__input" type="text" placeholder="Search" />
             <div className="filter__select">
-              <label>Filter</label>
-              <select name="filter_select">
-                <option value="status">Status</option>
+              <label>Pagination</label>
+              <select name="filter_select" value={this.state.pageSize} onChange={this.handdlePageSize}>
+                <option value="5" type="number">5</option>
+                <option value="10" type="number">10</option>
               </select>
             </div>
           </section>

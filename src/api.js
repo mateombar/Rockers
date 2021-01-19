@@ -6,7 +6,7 @@ const randomNumber = (min = 0, max = 1) =>
 const simulateNetworkLatency = (min = 30, max = 1500) =>
   delay(randomNumber(min, max));
 
-async function callApi(endpoint, options = {}) {
+async function callApi(endpoint, options, pageSize, actualPage) {
   await simulateNetworkLatency();
 
   options.headers = {
@@ -16,16 +16,20 @@ async function callApi(endpoint, options = {}) {
 
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
-  const data = await response.json();
-
-  return data;
+  let data = await response.json();
+  const firstItem = (pageSize * actualPage) - pageSize
+  console.log(firstItem,firstItem + pageSize);
+  data = data.slice(firstItem, firstItem + pageSize)
+  console.log(data);
+  return data
+  // return data; 
 }
 
 const api = {
   rockers: {
-    list() {
+    list(pageSize, actualPage) {
       // return [];
-      return callApi('/rockers');
+      return callApi('/rockers', {},pageSize, actualPage );
     },
     create(rocker) {
       return callApi(`/rockers`, {
