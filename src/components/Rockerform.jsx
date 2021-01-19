@@ -4,9 +4,6 @@ class Rockerform extends React.Component {
   handleClick = (e) => {
     console.log("clicked");
   };
-  handleSubmit = (e) => {
-    e.preventDefault();
-  };
   constructor(props) {
     super(props);
     this.handleImage = this.handleImage.bind(this);
@@ -29,7 +26,7 @@ class Rockerform extends React.Component {
         <header>
           <h1>New Rocker</h1>
         </header>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.props.onSubmit}>
           <div className="form-group">
             <label>First Name</label>
             <input
@@ -101,6 +98,7 @@ class Rockerform extends React.Component {
           <button onClick={this.handleClick} className="form-button">
             Save
           </button>
+          {this.props.error && <p>{this.props.error.message}</p>}
         </form>
       </div>
     );

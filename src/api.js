@@ -17,15 +17,19 @@ async function callApi(endpoint, options, pageSize, actualPage) {
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
   const data = await response.json();
-  const firstItem = (pageSize * actualPage) - pageSize
-  const pages = Math.round(data.length / pageSize)
-  let rockers = {}
-  rockers.results = data.slice(firstItem, firstItem + pageSize)
-  rockers.options = {
-    resultsLength: data.length,
-    pages: pages
+  if (pageSize && actualPage) {
+
+    const firstItem = (pageSize * actualPage) - pageSize
+    const pages = Math.round(data.length / pageSize)
+    let rockers = {}
+    rockers.results = data.slice(firstItem, firstItem + pageSize)
+    rockers.options = {
+      resultsLength: data.length,
+      pages: pages
+    }
+    return rockers
   }
-  return rockers
+  return data;
   // return data; 
 }
 
