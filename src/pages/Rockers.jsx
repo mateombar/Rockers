@@ -12,7 +12,7 @@ class Rockers extends React.Component {
       pageSize: 5,
       loading: true,
       error: null,
-      data: [],
+      data: {},
     };
   }
   componentDidMount() {
@@ -25,16 +25,16 @@ class Rockers extends React.Component {
   pagination = async (page) => {
     await this.setState({
       actualPage: this.state.actualPage + page,
-      data: { info: this.state.data.info, results: [] },
+      data: { options: this.state.data.options, results: [] },
     });
-    if (this.state.actualPage > this.state.data.info.pages) {
+    if (this.state.actualPage > this.state.data.options.pages) {
       this.setState({
         actualPage: 1,
       });
     }
     if (this.state.actualPage <= 0) {
       this.setState({
-        actualPage: this.state.data.info.pages,
+        actualPage: this.state.data.options.pages,
       });
     }
     this.fetchCharacters();
@@ -42,12 +42,11 @@ class Rockers extends React.Component {
 
   fetchCharacters = async () => {
     this.setState({ loading: true, error: null });
-    // const response = await fetch(
-    //   `https://rickandmortyapi.com/api/character/?page=${this.state.actualPage}`
-    // );
-    // const data = await response.json();
     try {
-      const data = await api.rockers.list(this.state.pageSize, this.state.actualPage);
+      const data = await api.rockers.list(
+        this.state.pageSize,
+        this.state.actualPage
+      );
       this.setState({
         loading: false,
         data: data,
@@ -58,12 +57,15 @@ class Rockers extends React.Component {
         error: error,
       });
     }
+    console.log(this.state.data);
   };
-  handdlePageSize = (e) =>{
-    this.setState({
-      pageSize: Number(e.target.value)
-    })
-  }
+  handdlePageSize = async (e) => {
+    await this.setState({
+      pageSize: Number(e.target.value),
+      actualPage: 1,
+    });
+    this.fetchCharacters();
+  };
   render() {
     return (
       <div className="rocker__container">
@@ -72,9 +74,17 @@ class Rockers extends React.Component {
             <input className="filter__input" type="text" placeholder="Search" />
             <div className="filter__select">
               <label>Pagination</label>
-              <select name="filter_select" value={this.state.pageSize} onChange={this.handdlePageSize}>
-                <option value="5" type="number">5</option>
-                <option value="10" type="number">10</option>
+              <select
+                name="filter_select"
+                value={this.state.pageSize}
+                onChange={this.handdlePageSize}
+              >
+                <option value="5" type="number">
+                  5
+                </option>
+                <option value="10" type="number">
+                  10
+                </option>
               </select>
             </div>
           </section>
@@ -91,14 +101,15 @@ class Rockers extends React.Component {
               <Loader />
             </section>
           )}
-          {this.state.data.length === 0 && this.state.loading === false ? (
+          {this.state.data.length === 0 && this.state.loading === false && (
             <div>
               <h3>Rockers Not found</h3>
               <Link className="link_button" to="/rockers/new">
                 Create a Rocker
               </Link>
             </div>
-          ) : (
+          )}
+          {this.state.data && this.state.loading === false && (
             <section className="badges__container">
               {!this.state.loading && (
                 <div className="badges__container--pagination">
@@ -112,7 +123,7 @@ class Rockers extends React.Component {
               )}
 
               <ul className="badges__container--list">
-                {this.state.data.map((rocker) => {
+                {this.state.data.results.map((rocker) => {
                   return <RockerBadge data={rocker} key={rocker.id} />;
                 })}
               </ul>
