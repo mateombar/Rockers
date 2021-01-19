@@ -21,12 +21,12 @@ class Rocker extends React.Component {
           </div>
           <div className="profile_description">
             <p>{data.email}</p>
-            <p>{data.position}</p>
+            <p>{data.jobTitle}</p>
             <small>Status: {data.status}</small>
           </div>
         </section>
         <footer>
-          <h5>"{data.quote}"</h5>
+          {/* <h5>"{data.quote}"</h5> */}
         </footer>
       </article>
     );

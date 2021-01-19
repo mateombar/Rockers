@@ -57,7 +57,6 @@ class Rockers extends React.Component {
         error: error,
       });
     }
-    console.log(this.state.data);
   };
   handdlePageSize = async (e) => {
     await this.setState({

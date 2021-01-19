@@ -19,14 +19,12 @@ async function callApi(endpoint, options, pageSize, actualPage) {
   const data = await response.json();
   const firstItem = (pageSize * actualPage) - pageSize
   const pages = Math.round(data.length / pageSize)
-  console.log(firstItem, firstItem + pageSize);
   let rockers = {}
   rockers.results = data.slice(firstItem, firstItem + pageSize)
   rockers.options = {
     resultsLength: data.length,
     pages: pages
   }
-  console.log(rockers);
   return rockers
   // return data; 
 }

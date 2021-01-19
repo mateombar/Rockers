@@ -9,9 +9,8 @@ class RockerNew extends React.Component {
       lastName: "",
       avatarUrl: "",
       email: "",
-      position: "",
+      jobTitle: "",
       status: "",
-      quote: "",
     },
   };
   handleChange = (e) => {

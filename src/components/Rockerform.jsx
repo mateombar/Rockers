@@ -74,13 +74,13 @@ class Rockerform extends React.Component {
             />
           </div>
           <div className="form-group">
-            <label>Position</label>
+            <label>Job Title</label>
             <input
               className="form-group__input"
               onChange={this.props.onChange}
               type="text"
-              name="position"
-              value={this.props.formValues.position}
+              name="jobTitle"
+              value={this.props.formValues.jobTitle}
             />
           </div>
           <div className="form-group">
@@ -97,16 +97,7 @@ class Rockerform extends React.Component {
               <option value="No Available">No Available</option>
             </select>
           </div>
-          <div className="form-group">
-            <label>Quote</label>
-            <input
-              className="form-group__input"
-              onChange={this.props.onChange}
-              type="text"
-              name="quote"
-              value={this.props.formValues.quote}
-            />
-          </div>
+
           <button onClick={this.handleClick} className="form-button">
             Save
           </button>
