@@ -1,10 +1,25 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 .App {
   margin: 0px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
+.link_button {
+  width: 150px;
+  height: 30px;
+  padding: 0.3rem;
+  font-size: 0.9rem;
+  color: white;
+  background-color: #559574;
+  border-radius: 25px;
+  outline: none;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none ;
+}

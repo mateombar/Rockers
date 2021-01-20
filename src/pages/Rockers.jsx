@@ -127,7 +127,7 @@ class Rockers extends React.Component {
               <ul className="badges__container--list">
                 {this.state.data.results.map((rocker) => {
                   return (
-                    <Link to={`/rockers/${rocker.id}/edit`} key={rocker.id}>
+                    <Link to={`/rockers/${rocker.id}/details`} key={rocker.id}>
                       <RockerBadge data={rocker} />
                     </Link>
                   );

@@ -34,7 +34,6 @@ class RockerEdit extends React.Component {
     });
     try {
       const data = await api.rockers.read(this.state.rockerId);
-      console.log(data);
       this.setState({
         loading: false,
         form: data,
@@ -82,22 +81,23 @@ class RockerEdit extends React.Component {
     }
   };
   render() {
-    if (this.state.loading) {
-      return <Loader />;
-    }
     return (
       <div className="rockeredit">
-        <article className="rockeredit__article">
-          <Rockerform
-            onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-            handleImage={this.handleImage}
-            formValues={this.state.form}
-            headerTitle={"Edit"}
-            error={this.state.error}
-          />
-          <Rocker data={this.state.form} />
-        </article>
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <article className="rockeredit__article">
+            <Rockerform
+              onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              handleImage={this.handleImage}
+              formValues={this.state.form}
+              headerTitle={"Edit"}
+              error={this.state.error}
+            />
+            <Rocker data={this.state.form} />
+          </article>
+        )}
       </div>
     );
   }

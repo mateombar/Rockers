@@ -1,0 +1,17 @@
+.rockerdetails__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.button__container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+}
+.button__container button{
+    background-color: #559574bb;
+    cursor: pointer;
+}
+

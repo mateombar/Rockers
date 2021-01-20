@@ -45,19 +45,6 @@
   justify-content: flex-end;
   margin-top:3%;
 }
-.link_button{
-  width: 150px;
-  height: 30px;
-  padding: 0.3rem;
-  color: white;
-  background-color: #559574;
-  border-radius: 25px;
-  outline: none;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .card .badges__container {
   margin-top:3%;
