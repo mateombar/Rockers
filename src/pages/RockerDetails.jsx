@@ -1,8 +1,9 @@
 import React from "react";
+import ReactDom from 'react-dom'
 import Rocker from "../components/Rocker";
 import Loader from "../components/Loader";
 import api from "../api";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./styles/RockerDetails.css";
 class RockerDetails extends React.Component {
   constructor(props) {
@@ -11,14 +12,7 @@ class RockerDetails extends React.Component {
       rockerId: "",
       loading: true,
       error: null,
-      character: {
-        firstName: "",
-        lastName: "",
-        avatarUrl: "",
-        email: "",
-        jobTitle: "",
-        status: "",
-      },
+      character: undefined,
     };
   }
   componentDidMount = async () => {
@@ -32,8 +26,8 @@ class RockerDetails extends React.Component {
       loading: true,
       error: null,
     });
-    const character = await api.rockers.read(this.state.rockerId);
     try {
+      const character = await api.rockers.read(this.state.rockerId);
       this.setState({
         loading: false,
         character,
@@ -45,10 +39,13 @@ class RockerDetails extends React.Component {
       });
     }
   };
-  handleDelete = e => {
-      console.log('jaja');
-  }
+  handleDelete = (e) => {
+    console.log("jaja");
+  };
   render() {
+    if (this.state.error) {
+      return <h1>{this.state.error.message}</h1>;
+    }
     return (
       <article className="rockerdetails__container">
         {this.state.loading ? (
@@ -57,8 +54,16 @@ class RockerDetails extends React.Component {
           <React.Fragment>
             <Rocker data={this.state.character} />
             <div className="button__container">
-                <Link className="link_button" to={`/rockers/${this.state.rockerId}/edit`}>Edit</Link>
-                <button className="link_button" onClick={this.handleDelete}>Delete</button>
+              <Link
+                className="link_button"
+                to={`/rockers/${this.state.rockerId}/edit`}
+              >
+                Edit
+              </Link>
+              <button className="link_button" onClick={this.handleDelete}>
+                Delete
+              </button>
+              {ReactDom.createPortal(<h1>Hoooola, toy fuera</h1>, document.getElementById('delete_modal'))}
             </div>
           </React.Fragment>
         )}
