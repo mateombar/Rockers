@@ -6,14 +6,14 @@ const randomNumber = (min = 0, max = 1) =>
 const simulateNetworkLatency = (min = 30, max = 1500) =>
   delay(randomNumber(min, max));
 
-async function callApi(endpoint, options, pageSize, actualPage) {
+async function callApi(endpoint, options, controller, pageSize, actualPage) {
   await simulateNetworkLatency();
 
   options.headers = {
     'Content-Type': 'application/json',
     Accept: 'application/json',
   };
-
+  options.controller = controller;
   const url = BASE_URL + endpoint;
   const response = await fetch(url, options);
   const data = await response.json();
@@ -35,8 +35,8 @@ async function callApi(endpoint, options, pageSize, actualPage) {
 
 const api = {
   rockers: {
-    list(pageSize, actualPage) {
-      return callApi('/rockers', {}, pageSize, actualPage);
+    list(pageSize, actualPage, controller) {
+      return callApi('/rockers', {},controller, pageSize, actualPage);
     },
     create(rocker) {
       return callApi(`/rockers`, {
@@ -45,7 +45,7 @@ const api = {
       });
     },
     read(rockerId) {
-      return callApi(`/rockers/${rockerId}`);
+      return callApi(`/rockers/${rockerId}`, {});
     },
     update(rockerId, updates) {
       return callApi(`/rockers/${rockerId}`, {

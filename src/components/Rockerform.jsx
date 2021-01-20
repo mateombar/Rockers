@@ -24,7 +24,7 @@ class Rockerform extends React.Component {
     return (
       <div className="rockerform">
         <header>
-          <h1>New Rocker</h1>
+          <h1>{this.props.headerTitle} Rocker</h1>
         </header>
         <form onSubmit={this.props.onSubmit}>
           <div className="form-group">

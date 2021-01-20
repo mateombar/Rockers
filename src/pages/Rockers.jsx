@@ -14,13 +14,15 @@ class Rockers extends React.Component {
       error: null,
       data: {},
     };
+    this.controller = new AbortController();
   }
   componentDidMount() {
     this.fetchCharacters();
   }
   componentDidUpdate() {}
-  componentWillUnmount() {
-    clearTimeout(this.timeoutId);
+  async componentWillUnmount() {
+    await this.controller.abort();
+    console.log(this.controller.signal);
   }
   pagination = async (page) => {
     await this.setState({
@@ -45,7 +47,8 @@ class Rockers extends React.Component {
     try {
       const data = await api.rockers.list(
         this.state.pageSize,
-        this.state.actualPage
+        this.state.actualPage,
+        this.controller.signal
       );
       this.setState({
         loading: false,
@@ -123,7 +126,11 @@ class Rockers extends React.Component {
 
               <ul className="badges__container--list">
                 {this.state.data.results.map((rocker) => {
-                  return <RockerBadge data={rocker} key={rocker.id} />;
+                  return (
+                    <Link to={`/rockers/${rocker.id}/edit`} key={rocker.id}>
+                      <RockerBadge data={rocker} />
+                    </Link>
+                  );
                 })}
               </ul>
               {!this.state.loading && (

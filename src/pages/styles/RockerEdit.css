@@ -1,15 +1,15 @@
-.rockeredit{
+.rockernew{
     width: 100%;
 }
 
-.rockeredit .rockeredit__article{
+.rockernew .rockernew__article{
     display: grid;
     grid-template-columns: 1fr 1fr;
     justify-self: center;
 }
 @media only screen and (max-width: 800px){
     
-    .rockeredit .rockeredit__article{
+    .rockernew .rockernew__article{
         grid-template-columns: 1fr;
     }
 }

@@ -1,14 +1,16 @@
 import React from "react";
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
+import Loader from "../components/Loader";
 import api from "../api";
-import "./styles/RockerNew.css";
-class RockerNew extends React.Component {
+import "./styles/RockerEdit.css";
+class RockerEdit extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: true,
       error: null,
+      rockerId: "",
       form: {
         firstName: "",
         lastName: "",
@@ -19,7 +21,31 @@ class RockerNew extends React.Component {
       },
     };
   }
-  
+  componentDidMount = async () => {
+    await this.setState({
+      rockerId: this.props.match.params.rockerId,
+    });
+    this.fetchData();
+  };
+  fetchData = async (e) => {
+    this.setState({
+      loading: true,
+      error: null,
+    });
+    try {
+      const data = await api.rockers.read(this.state.rockerId);
+      console.log(data);
+      this.setState({
+        loading: false,
+        form: data,
+      });
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error,
+      });
+    }
+  };
   handleChange = (e) => {
     this.setState({
       form: {
@@ -46,8 +72,8 @@ class RockerNew extends React.Component {
       this.setState({
         loading: false,
       });
-      await api.rockers.create(this.state.form);
-      this.props.history.push('/rockers');
+      await api.rockers.update(this.state.rockerId, this.state.form);
+      this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
         loading: false,
@@ -56,15 +82,18 @@ class RockerNew extends React.Component {
     }
   };
   render() {
+    if (this.state.loading) {
+      return <Loader />;
+    }
     return (
-      <div className="rockernew">
-        <article className="rockernew__article">
+      <div className="rockeredit">
+        <article className="rockeredit__article">
           <Rockerform
             onSubmit={this.handleSubmit}
             onChange={this.handleChange}
             handleImage={this.handleImage}
             formValues={this.state.form}
-            headerTitle={'New'}
+            headerTitle={"Edit"}
             error={this.state.error}
           />
           <Rocker data={this.state.form} />
@@ -74,4 +103,4 @@ class RockerNew extends React.Component {
   }
 }
 
-export default RockerNew;
+export default RockerEdit;

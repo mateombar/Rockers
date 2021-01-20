@@ -88,8 +88,12 @@
   justify-content: center;
   align-items: center;
 }
-.badges__container ul{
+.badges__container--list{
   width: 90%;
+}
+.badges__container--list a{
+  text-decoration: none;
+  color: black;
 }
 @media only screen and (max-width: 900px) {
   .filter .filter__input {
