@@ -1,7 +1,8 @@
 import React from "react";
-import ReactDom from 'react-dom'
 import Rocker from "../components/Rocker";
 import Loader from "../components/Loader";
+import Modal from "../components/Modal";
+import ModalDeleteRocker from "../components/ModalDeleteRocker";
 import api from "../api";
 import { Link } from "react-router-dom";
 import "./styles/RockerDetails.css";
@@ -12,6 +13,7 @@ class RockerDetails extends React.Component {
       rockerId: "",
       loading: true,
       error: null,
+      isOpen: false,
       character: undefined,
     };
   }
@@ -40,7 +42,33 @@ class RockerDetails extends React.Component {
     }
   };
   handleDelete = (e) => {
-    console.log("jaja");
+    this.setState({
+      isOpen: true,
+    });
+  };
+  handleCloseModal = () => {
+    this.setState({
+      isOpen: false,
+    });
+  };
+  handleDeleteRocker = async (e) => {
+    await this.setState({
+      loading: true,
+      error: null,
+    });
+    try {
+      await api.rockers.remove(this.state.rockerId);
+      this.setState({
+        loading: false,
+      });
+      await this.props.history.push("/rockers");
+    } catch (error) {
+      this.setState({
+        loading: false,
+        error,
+      });
+    }
+    await this.handleCloseModal();
   };
   render() {
     if (this.state.error) {
@@ -60,10 +88,21 @@ class RockerDetails extends React.Component {
               >
                 Edit
               </Link>
-              <button className="link_button" onClick={this.handleDelete}>
+              <button
+                className="link_button link_button-danger"
+                onClick={this.handleDelete}
+              >
                 Delete
               </button>
-              {ReactDom.createPortal(<h1>Hoooola, toy fuera</h1>, document.getElementById('delete_modal'))}
+              <Modal
+                isOpen={this.state.isOpen}
+                onCloseModal={() => this.handleCloseModal()}
+              >
+                <ModalDeleteRocker
+                  onDeleteRocker={this.handleDeleteRocker}
+                  onCancel={this.handleCloseModal}
+                />
+              </Modal>
             </div>
           </React.Fragment>
         )}

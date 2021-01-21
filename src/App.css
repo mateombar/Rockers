@@ -8,7 +8,7 @@
   font-family: "Poppins", sans-serif;
 }
 
-.link_button {
+.link_button, .link_button-mini {
   width: 150px;
   height: 30px;
   padding: 0.3rem;
@@ -22,4 +22,11 @@
   align-items: center;
   justify-content: center;
   border: none ;
+  cursor: pointer;
+}
+.link_button-mini{
+  width: 100px;
+}
+.link_button-danger{
+  background-color: #D94938;
 }

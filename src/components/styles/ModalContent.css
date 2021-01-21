@@ -1,0 +1,17 @@
+.modalcontent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5%;
+}
+.modalcontent__info {
+  text-align: center;
+}
+.modalcontent__actions {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}   

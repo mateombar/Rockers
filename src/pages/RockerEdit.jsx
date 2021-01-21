@@ -64,14 +64,14 @@ class RockerEdit extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({
-      loading: false,
+      loading: true,
       error: null,
     });
     try {
+      await api.rockers.update(this.state.rockerId, this.state.form);
       this.setState({
         loading: false,
       });
-      await api.rockers.update(this.state.rockerId, this.state.form);
       this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
