@@ -1,9 +1,6 @@
 import React from "react";
 import "./styles/Rockerform.css";
 class Rockerform extends React.Component {
-  handleClick = (e) => {
-    console.log("clicked");
-  };
   constructor(props) {
     super(props);
     this.handleImage = this.handleImage.bind(this);

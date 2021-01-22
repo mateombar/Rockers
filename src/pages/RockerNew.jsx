@@ -10,6 +10,7 @@ class RockerNew extends React.Component {
       loading: true,
       error: null,
       form: {
+        id: "",
         firstName: "",
         lastName: "",
         avatarUrl: "",
@@ -19,7 +20,7 @@ class RockerNew extends React.Component {
       },
     };
   }
-  
+
   handleChange = (e) => {
     this.setState({
       form: {
@@ -43,17 +44,31 @@ class RockerNew extends React.Component {
       error: null,
     });
     try {
-      this.setState({
+      await this.setState({
         loading: false,
+        form: {
+          ...this.state.form,
+          id: this.generateHash(`${this.state.form.firstName}${this.state.form.firstName}`),
+        },
       });
       await api.rockers.create(this.state.form);
-      this.props.history.push('/rockers');
+      this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
         loading: false,
         error,
       });
     }
+  };
+  generateHash = (string) => {
+    var hash = 0;
+    if (string.length === 0) return hash;
+    for (let i = 0; i < string.length; i++) {
+      var charCode = string.charCodeAt(i) * (Math.random() * 10);
+      hash = (hash << 7) - hash + charCode;
+      hash = hash & hash;
+    }
+    return hash;
   };
   render() {
     return (
@@ -64,7 +79,7 @@ class RockerNew extends React.Component {
             onChange={this.handleChange}
             handleImage={this.handleImage}
             formValues={this.state.form}
-            headerTitle={'New'}
+            headerTitle={"New"}
             error={this.state.error}
           />
           <Rocker data={this.state.form} />
