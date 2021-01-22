@@ -26,6 +26,7 @@ function Rockerform(props) {
             type="text"
             name="firstName"
             value={props.formValues.firstName}
+            required
           />
         </div>
         <div className="form-group">
@@ -36,6 +37,7 @@ function Rockerform(props) {
             type="text"
             name="lastName"
             value={props.formValues.lastName}
+            required
           />
         </div>
         <div className="form-group">
@@ -48,6 +50,7 @@ function Rockerform(props) {
             accept="image/png, image/jpeg"
             name="avatarUrl"
             ref={fileInput}
+            required
           />
         </div>
         <div className="form-group">
@@ -58,6 +61,7 @@ function Rockerform(props) {
             type="text"
             name="email"
             value={props.formValues.email}
+            required
           />
         </div>
         <div className="form-group">
@@ -68,6 +72,7 @@ function Rockerform(props) {
             type="text"
             name="jobTitle"
             value={props.formValues.jobTitle}
+            required
           />
         </div>
         <div className="form-group">
@@ -77,7 +82,11 @@ function Rockerform(props) {
             onChange={props.onChange}
             name="status"
             value={props.formValues.status}
+            required
           >
+            <option value="" disabled>
+              Choose one
+            </option>
             <option value="Available">Available</option>
             <option value="Working">Working</option>
             <option value="Unemployed">Unemployed</option>
