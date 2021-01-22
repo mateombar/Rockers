@@ -22,7 +22,6 @@ class Rockers extends React.Component {
   componentDidUpdate() {}
   async componentWillUnmount() {
     await this.controller.abort();
-    console.log(this.controller.signal);
   }
   pagination = async (page) => {
     await this.setState({
@@ -71,25 +70,7 @@ class Rockers extends React.Component {
   render() {
     return (
       <div className="rocker__container">
-        <div className="card">
-          <section className="filter">
-            <input className="filter__input" type="text" placeholder="Search" />
-            <div className="filter__select">
-              <label>Pagination</label>
-              <select
-                name="filter_select"
-                value={this.state.pageSize}
-                onChange={this.handdlePageSize}
-              >
-                <option value="5" type="number">
-                  5
-                </option>
-                <option value="10" type="number">
-                  10
-                </option>
-              </select>
-            </div>
-          </section>
+        <div className="card">          
           <section className="new__badge">
             <Link className="link_button" to="/rockers/new">
               New Rocker
@@ -111,6 +92,24 @@ class Rockers extends React.Component {
               </Link>
             </div>
           )}
+          <section className="filter">
+            <input className="filter__input" type="text" placeholder="Search" />
+            <div className="filter__select">
+              <label>Pagination</label>
+              <select
+                name="filter_select"
+                value={this.state.pageSize}
+                onChange={this.handdlePageSize}
+              >
+                <option value="5" type="number">
+                  5
+                </option>
+                <option value="10" type="number">
+                  10
+                </option>
+              </select>
+            </div>
+          </section>
           {this.state.data && this.state.loading === false && (
             <section className="badges__container">
               {!this.state.loading && (
