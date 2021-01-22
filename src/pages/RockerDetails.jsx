@@ -57,18 +57,16 @@ class RockerDetails extends React.Component {
       error: null,
     });
     try {
+      this.handleCloseModal();
       await api.rockers.remove(this.state.rockerId);
-      this.setState({
-        loading: false,
-      });
       await this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
         loading: false,
         error,
       });
+      this.handleCloseModal();
     }
-    await this.handleCloseModal();
   };
   render() {
     if (this.state.error) {
