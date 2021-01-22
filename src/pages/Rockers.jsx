@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import RockerBadge from "../components/RockerBadge";
-import Loader from "../components/Loader";
 import api from "../api";
+
+import Loader from "../components/Loader";
+import RockersContainer from "../components/RockersContainer";
 import "./styles/Rockers.css";
 class Rockers extends React.Component {
   constructor(props) {
     super(props);
+    this.pagination = this.pagination.bind(this);
     this.state = {
       actualPage: 1,
       pageSize: 5,
@@ -70,7 +72,7 @@ class Rockers extends React.Component {
   render() {
     return (
       <div className="rocker__container">
-        <div className="card">          
+        <div className="card">
           <section className="new__badge">
             <Link className="link_button" to="/rockers/new">
               New Rocker
@@ -92,57 +94,13 @@ class Rockers extends React.Component {
               </Link>
             </div>
           )}
-          <section className="filter">
-            <input className="filter__input" type="text" placeholder="Search" />
-            <div className="filter__select">
-              <label>Pagination</label>
-              <select
-                name="filter_select"
-                value={this.state.pageSize}
-                onChange={this.handdlePageSize}
-              >
-                <option value="5" type="number">
-                  5
-                </option>
-                <option value="10" type="number">
-                  10
-                </option>
-              </select>
-            </div>
-          </section>
           {this.state.data && this.state.loading === false && (
-            <section className="badges__container">
-              {!this.state.loading && (
-                <div className="badges__container--pagination">
-                  <button onClick={() => this.pagination(-1)} className="prev">
-                    <i className="fas fa-chevron-left"></i>
-                  </button>
-                  <button onClick={() => this.pagination(1)} className="next">
-                    <i className="fas fa-chevron-right"></i>
-                  </button>
-                </div>
-              )}
-
-              <ul className="badges__container--list">
-                {this.state.data.results.map((rocker) => {
-                  return (
-                    <Link to={`/rockers/${rocker.id}/details`} key={rocker.id}>
-                      <RockerBadge data={rocker} />
-                    </Link>
-                  );
-                })}
-              </ul>
-              {!this.state.loading && (
-                <div className="badges__container--pagination">
-                  <button onClick={() => this.pagination(-1)} className="prev">
-                    <i className="fas fa-chevron-left"></i>
-                  </button>
-                  <button onClick={() => this.pagination(1)} className="next">
-                    <i className="fas fa-chevron-right"></i>
-                  </button>
-                </div>
-              )}
-            </section>
+            <RockersContainer
+              pageSize={this.state.pageSize}
+              handdlePageSize={this.handdlePageSize}
+              pagination={this.pagination}
+              data={this.state.data}
+            />
           )}
         </div>
       </div>
