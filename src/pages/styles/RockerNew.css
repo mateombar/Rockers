@@ -1,15 +1,16 @@
-.rockernew{
-    width: 100%;
+.rockernew {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.rockernew .rockernew__article{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    justify-self: center;
+.rockernew .rockernew__article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-self: center;
 }
-@media only screen and (max-width: 800px){
-    
-    .rockernew .rockernew__article{
-        grid-template-columns: 1fr;
-    }
+@media only screen and (max-width: 800px) {
+  .rockernew .rockernew__article {
+    grid-template-columns: 1fr;
+  }
 }

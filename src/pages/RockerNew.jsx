@@ -1,13 +1,14 @@
 import React from "react";
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
+import Loader from "../components/Loader";
 import api from "../api";
 import "./styles/RockerNew.css";
 class RockerNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
+      loading: false,
       error: null,
       form: {
         id: "",
@@ -40,15 +41,17 @@ class RockerNew extends React.Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     this.setState({
-      loading: false,
+      loading: true,
       error: null,
     });
     try {
       await this.setState({
-        loading: false,
+        // loading: false,
         form: {
           ...this.state.form,
-          id: this.generateHash(`${this.state.form.firstName}${this.state.form.firstName}`),
+          id: this.generateHash(
+            `${this.state.form.firstName}${this.state.form.firstName}`
+          ),
         },
       });
       await api.rockers.create(this.state.form);
@@ -73,17 +76,21 @@ class RockerNew extends React.Component {
   render() {
     return (
       <div className="rockernew">
-        <article className="rockernew__article">
-          <Rockerform
-            onSubmit={this.handleSubmit}
-            onChange={this.handleChange}
-            handleImage={this.handleImage}
-            formValues={this.state.form}
-            headerTitle={"New"}
-            error={this.state.error}
-          />
-          <Rocker data={this.state.form} />
-        </article>
+        {this.state.loading ? (
+          <Loader />
+        ) : (
+          <article className="rockernew__article">
+            <Rockerform
+              onSubmit={this.handleSubmit}
+              onChange={this.handleChange}
+              handleImage={this.handleImage}
+              formValues={this.state.form}
+              headerTitle={"New"}
+              error={this.state.error}
+            />
+            <Rocker data={this.state.form} />
+          </article>
+        )}
       </div>
     );
   }
