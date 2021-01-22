@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import RockerBadge from "./RockerBadge";
 import { Link } from "react-router-dom";
+function useSearchRockers(rockers) {
+  const [query, setQuery] = useState("");
+  const [filteredRockers, setFilteredRockers] = useState(rockers);
+  React.useMemo(() => {
+    const result = rockers.filter((rocker) => {
+      return `${rocker.firstName} ${rocker.lastName}`
+        .toLowerCase()
+        .includes(query.toLowerCase());
+    });
+    setFilteredRockers(result);
+  }, [rockers, query]);
+  return { query, setQuery, filteredRockers };
+}
 function RockersContainer(props) {
+  const { query, setQuery, filteredRockers } = useSearchRockers(
+    props.data.results
+  );
   return (
     <React.Fragment>
       <section className="filter">
-        <input className="filter__input" type="text" placeholder="Search" />
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="filter__input"
+          type="text"
+          placeholder="Search"
+        />
         <div className="filter__select">
           <label>Pagination</label>
           <select
@@ -22,34 +44,38 @@ function RockersContainer(props) {
           </select>
         </div>
       </section>
-      <section className="badges__container">
-        <div className="badges__container--pagination">
-          <button onClick={() => props.pagination(-1)} className="prev">
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <button onClick={() => props.pagination(1)} className="next">
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </div>
+      {filteredRockers.length === 0 ? (
+        <h4>No results</h4>
+      ) : (
+        <section className="badges__container">
+          <div className="badges__container--pagination">
+            <button onClick={() => props.pagination(-1)} className="prev">
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button onClick={() => props.pagination(1)} className="next">
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
 
-        <ul className="badges__container--list">
-          {props.data.results.map((rocker) => {
-            return (
-              <Link to={`/rockers/${rocker.id}/details`} key={rocker.id}>
-                <RockerBadge data={rocker} />
-              </Link>
-            );
-          })}
-        </ul>
-        <div className="badges__container--pagination">
-          <button onClick={() => props.pagination(-1)} className="prev">
-            <i className="fas fa-chevron-left"></i>
-          </button>
-          <button onClick={() => props.pagination(1)} className="next">
-            <i className="fas fa-chevron-right"></i>
-          </button>
-        </div>
-      </section>
+          <ul className="badges__container--list">
+            {filteredRockers.map((rocker) => {
+              return (
+                <Link to={`/rockers/${rocker.id}/details`} key={rocker.id}>
+                  <RockerBadge data={rocker} />
+                </Link>
+              );
+            })}
+          </ul>
+          <div className="badges__container--pagination">
+            <button onClick={() => props.pagination(-1)} className="prev">
+              <i className="fas fa-chevron-left"></i>
+            </button>
+            <button onClick={() => props.pagination(1)} className="next">
+              <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </section>
+      )}
     </React.Fragment>
   );
 }
