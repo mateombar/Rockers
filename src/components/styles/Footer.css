@@ -1,0 +1,41 @@
+.rocker_footer{
+    margin-top: 15px;
+    background-image: linear-gradient(to right, #559574 , #6bc295);
+    position: static;
+    bottom: 0;
+    width: 100%;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px;
+    width: 300px;
+}
+.footer__container .contact__info {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 50%;
+}
+.contact__info a{
+    font-size: 1.7rem;
+    color: white;
+}
+.footer__container .copy_rigth {
+    text-align: center;
+    font-size: 0.7rem;
+    color: white;
+}
+
+.copy_rigth pre{
+    font-size: 1rem;
+}
+.copy_rigth i{
+    font-size: 0.5rem;
+}

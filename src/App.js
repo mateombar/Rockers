@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import RockerNew from './pages/RockerNew';
 import RockerEdit from './pages/RockerEdit';
 import RockerDetails from './pages/RockerDetails';
+import About from './pages/About';
 import NotFound from './pages/NotFound';
 
 import Rockers from './pages/Rockers';
@@ -21,6 +22,7 @@ function App() {
             <Route exact path="/rockers/new" component={RockerNew} />
             <Route exact path="/rockers/:rockerId/details" component={RockerDetails}/> 
             <Route exact path="/rockers/:rockerId/edit" component={RockerEdit}/>
+            <Route exact path="/about" component={About}/>
             <Route component={NotFound}/>
           </Switch>
         </Layout>
