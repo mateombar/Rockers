@@ -1,14 +1,22 @@
 import React from "react";
-import './styles/Footer.css';
+import "./styles/Footer.css";
 function Footer() {
   return (
     <footer className="rocker_footer">
       <section className="footer__container">
         <div className="contact__info">
-          <a href="">
+          <a
+            href="https://github.com/mateombar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-github"></i>
           </a>
-          <a href="">
+          <a
+            href="https://www.linkedin.com/in/mateo-monta%C3%B1ez-baron-648bab196/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fab fa-linkedin"></i>
           </a>
         </div>

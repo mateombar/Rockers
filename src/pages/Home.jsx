@@ -19,7 +19,7 @@ function Home() {
             Or, you can go to <Link to="/about">About</Link>, to know about me
           </p>
           <p>
-            ¿Still here? <Link to="/error">Click Me</Link>
+            ¿Do you wanna see the cat? <Link to="/error">Click Me</Link>
           </p>
         </section>
       </div>
