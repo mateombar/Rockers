@@ -1,9 +1,23 @@
 import React from "react";
+import firebase from '../firebase';
+
+
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
 import Loader from "../components/Loader";
 import api from "../api";
 import "./styles/RockerNew.css";
+const ref = firebase.firestore().collection('rockers').doc('NRjOnohuRBUV78NSApyB');
+ref.get().then((doc) => {
+  if (doc.exists) {
+      console.log("Document data:", doc.data());
+  } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+  }
+}).catch(error => {
+  console.log("Error getting document:", error);
+});
 class RockerNew extends React.Component {
   constructor(props) {
     super(props);
