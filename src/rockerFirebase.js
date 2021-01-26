@@ -26,7 +26,7 @@ async function getRockerList(pageSize, actualPage) {
 }
 async function createRocker(rockerData) {
     const idRocker = await rockersRef.doc().id;
-    await rockersRef.doc(idRocker).set({...rockerData, idRocker}).then(() => {
+    await rockersRef.doc(idRocker).set({ ...rockerData, idRocker }).then(() => {
         console.log("Document successfully written!");
     })
         .catch((error) => {
@@ -34,6 +34,14 @@ async function createRocker(rockerData) {
         });
 }
 
+async function getRockerById(rockerId) {
+    const docRef = await rockersRef.doc(rockerId);
+    return docRef.get().then(doc => {
+        return doc.data();
+    }).catch(error => {
+        console.log("Error getting document:", error);
+    });
+}
 const rockerFirebase = {
     rockers: {
         list(pageSize, actualPage) {
@@ -42,8 +50,12 @@ const rockerFirebase = {
         create(rockerData) {
             return createRocker(rockerData);
         },
-        read(rockerId) { },
-        update(rockerId, rockerData) { },
+        read(rockerId) {
+            return getRockerById(rockerId);
+        },
+        update(rockerId, rockerData) {
+            const rocker = getRockerById(rockerId);
+         },
         remove(rockerId) { }
     }
 }
