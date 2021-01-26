@@ -6,7 +6,7 @@ function Footer() {
       <section className="footer__container">
         <div className="contact__info">
           <a
-            href="https://github.com/mateombar"
+            href="https://github.com/mateombar/Rockers"
             target="_blank"
             rel="noopener noreferrer"
           >
