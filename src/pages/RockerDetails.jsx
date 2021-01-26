@@ -59,7 +59,7 @@ class RockerDetails extends React.Component {
     try {
       this.handleCloseModal();
       await rockerFirebase.rockers.remove(this.state.rockerId);
-      await this.props.history.push("/rockers");
+      this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
         loading: false,

@@ -45,7 +45,7 @@ async function getRockerById(rockerId) {
 
 function updateRocker(rockerId, rockerData) {
     const date = firebase.firestore.FieldValue.serverTimestamp()
-    rockerData = {...rockerData, date}
+    rockerData = { ...rockerData, date }
     rockersRef.doc(rockerId).update(rockerData).then(() => {
         console.log("Rocker successfully updated!");
     })
