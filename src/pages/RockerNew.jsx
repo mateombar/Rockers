@@ -55,16 +55,6 @@ class RockerNew extends React.Component {
       });
     }
   };
-  generateHash = (string) => {
-    var hash = 0;
-    if (string.length === 0) return hash;
-    for (let i = 0; i < string.length; i++) {
-      var charCode = string.charCodeAt(i) * (Math.random() * 10);
-      hash = (hash << 7) - hash + charCode;
-      hash = hash & hash;
-    }
-    return hash;
-  };
   render() {
     return (
       <div className="rockernew">

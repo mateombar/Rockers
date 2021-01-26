@@ -1,7 +1,7 @@
 import firebase from './firebase';
 const rockersRef = firebase.firestore().collection('rockers');
 async function getRockerList(pageSize, actualPage) {
-    const data = await rockersRef.get()
+    const data = await rockersRef.orderBy("date", 'desc').get()
         .then(querySnapshot => {
             const results = [];
             querySnapshot.forEach(doc => {
@@ -25,7 +25,8 @@ async function getRockerList(pageSize, actualPage) {
 }
 async function createRocker(rockerData) {
     const idRocker = await rockersRef.doc().id;
-    await rockersRef.doc(idRocker).set({ ...rockerData, idRocker }).then(() => {
+    const date = firebase.firestore.FieldValue.serverTimestamp()
+    await rockersRef.doc(idRocker).set({ ...rockerData, idRocker, date }).then(() => {
         console.log("Rocker successfully written!");
     })
         .catch((error) => {
@@ -43,6 +44,8 @@ async function getRockerById(rockerId) {
 }
 
 function updateRocker(rockerId, rockerData) {
+    const date = firebase.firestore.FieldValue.serverTimestamp()
+    rockerData = {...rockerData, date}
     rockersRef.doc(rockerId).update(rockerData).then(() => {
         console.log("Rocker successfully updated!");
     })
