@@ -1,7 +1,6 @@
 import firebase from './firebase';
 const rockersRef = firebase.firestore().collection('rockers');
 async function getRockerList(pageSize, actualPage) {
-    // let data = []
     const data = await rockersRef.get()
         .then(querySnapshot => {
             const results = [];
@@ -27,10 +26,10 @@ async function getRockerList(pageSize, actualPage) {
 async function createRocker(rockerData) {
     const idRocker = await rockersRef.doc().id;
     await rockersRef.doc(idRocker).set({ ...rockerData, idRocker }).then(() => {
-        console.log("Document successfully written!");
+        console.log("Rocker successfully written!");
     })
         .catch((error) => {
-            console.error("Error writing document: ", error);
+            console.error("Error writing Rocker: ", error);
         });
 }
 
@@ -39,18 +38,27 @@ async function getRockerById(rockerId) {
     return docRef.get().then(doc => {
         return doc.data();
     }).catch(error => {
-        console.log("Error getting document:", error);
+        console.log("Error getting Rocker:", error);
     });
 }
 
 function updateRocker(rockerId, rockerData) {
     rockersRef.doc(rockerId).update(rockerData).then(() => {
-        console.log("Document successfully updated!");
+        console.log("Rocker successfully updated!");
     })
         .catch(error => {
-            console.error("Error updating document: ", error);
+            console.error("Error updating Rocker: ", error);
         });
 }
+
+function deleteRocker(rockerId) {
+    rockersRef.doc(rockerId).delete().then(() => {
+        console.log("Rocker successfully deleted!");
+    }).catch(error => {
+        console.error("Error removing Rocker: ", error);
+    });
+}
+
 const rockerFirebase = {
     rockers: {
         list(pageSize, actualPage) {
@@ -65,7 +73,9 @@ const rockerFirebase = {
         update(rockerId, rockerData) {
             updateRocker(rockerId, rockerData);
         },
-        remove(rockerId) { }
+        remove(rockerId) {
+            deleteRocker(rockerId);
+        }
     }
 }
 export default rockerFirebase;
