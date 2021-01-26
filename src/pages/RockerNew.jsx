@@ -1,23 +1,10 @@
 import React from "react";
-import firebase from '../firebase';
-
 
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
 import Loader from "../components/Loader";
-import api from "../api";
+import rockerFirebase from "../rockerFirebase";
 import "./styles/RockerNew.css";
-const ref = firebase.firestore().collection('rockers').doc('NRjOnohuRBUV78NSApyB');
-ref.get().then((doc) => {
-  if (doc.exists) {
-      console.log("Document data:", doc.data());
-  } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-  }
-}).catch(error => {
-  console.log("Error getting document:", error);
-});
 class RockerNew extends React.Component {
   constructor(props) {
     super(props);
@@ -25,7 +12,7 @@ class RockerNew extends React.Component {
       loading: false,
       error: null,
       form: {
-        id: "",
+        // id: "",
         firstName: "",
         lastName: "",
         avatarUrl: "",
@@ -59,16 +46,7 @@ class RockerNew extends React.Component {
       error: null,
     });
     try {
-      await this.setState({
-        // loading: false,
-        form: {
-          ...this.state.form,
-          id: this.generateHash(
-            `${this.state.form.firstName}${this.state.form.firstName}`
-          ),
-        },
-      });
-      await api.rockers.create(this.state.form);
+      await rockerFirebase.rockers.create(this.state.form)
       this.props.history.push("/rockers");
     } catch (error) {
       this.setState({

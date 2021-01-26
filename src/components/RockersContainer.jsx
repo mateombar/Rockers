@@ -60,7 +60,7 @@ function RockersContainer(props) {
           <ul className="badges__container--list">
             {filteredRockers.map((rocker) => {
               return (
-                <Link to={`/rockers/${rocker.id}/details`} key={rocker.id}>
+                <Link to={`/rockers/${rocker.idRocker}/details`} key={rocker.idRocker}>
                   <RockerBadge data={rocker} />
                 </Link>
               );
