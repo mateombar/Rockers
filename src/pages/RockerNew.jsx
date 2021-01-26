@@ -1,8 +1,9 @@
 import React from "react";
+
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
 import Loader from "../components/Loader";
-import api from "../api";
+import rockerFirebase from "../rockerFirebase";
 import "./styles/RockerNew.css";
 class RockerNew extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class RockerNew extends React.Component {
       loading: false,
       error: null,
       form: {
-        id: "",
+        // id: "",
         firstName: "",
         lastName: "",
         avatarUrl: "",
@@ -45,16 +46,7 @@ class RockerNew extends React.Component {
       error: null,
     });
     try {
-      await this.setState({
-        // loading: false,
-        form: {
-          ...this.state.form,
-          id: this.generateHash(
-            `${this.state.form.firstName}${this.state.form.firstName}`
-          ),
-        },
-      });
-      await api.rockers.create(this.state.form);
+      await rockerFirebase.rockers.create(this.state.form)
       this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
@@ -62,16 +54,6 @@ class RockerNew extends React.Component {
         error,
       });
     }
-  };
-  generateHash = (string) => {
-    var hash = 0;
-    if (string.length === 0) return hash;
-    for (let i = 0; i < string.length; i++) {
-      var charCode = string.charCodeAt(i) * (Math.random() * 10);
-      hash = (hash << 7) - hash + charCode;
-      hash = hash & hash;
-    }
-    return hash;
   };
   render() {
     return (

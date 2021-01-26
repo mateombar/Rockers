@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import api from "../api";
+import rockerFirebase from '../rockerFirebase';
 
 import Loader from "../components/Loader";
 import RockersContainer from "../components/RockersContainer";
@@ -46,7 +46,7 @@ class Rockers extends React.Component {
   fetchCharacters = async () => {
     this.setState({ loading: true, error: null });
     try {
-      const data = await api.rockers.list(
+      const data = await rockerFirebase.rockers.list(
         this.state.pageSize,
         this.state.actualPage,
         this.controller.signal

@@ -3,7 +3,7 @@ import Rocker from "../components/Rocker";
 import Loader from "../components/Loader";
 import Modal from "../components/Modal";
 import ModalDeleteRocker from "../components/ModalDeleteRocker";
-import api from "../api";
+import rockerFirebase from "../rockerFirebase";
 import { Link } from "react-router-dom";
 import "./styles/RockerDetails.css";
 class RockerDetails extends React.Component {
@@ -29,7 +29,7 @@ class RockerDetails extends React.Component {
       error: null,
     });
     try {
-      const character = await api.rockers.read(this.state.rockerId);
+      const character = await rockerFirebase.rockers.read(this.state.rockerId);
       this.setState({
         loading: false,
         character,
@@ -58,8 +58,8 @@ class RockerDetails extends React.Component {
     });
     try {
       this.handleCloseModal();
-      await api.rockers.remove(this.state.rockerId);
-      await this.props.history.push("/rockers");
+      await rockerFirebase.rockers.remove(this.state.rockerId);
+      this.props.history.push("/rockers");
     } catch (error) {
       this.setState({
         loading: false,
