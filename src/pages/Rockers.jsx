@@ -46,7 +46,6 @@ class Rockers extends React.Component {
   fetchCharacters = async () => {
     this.setState({ loading: true, error: null });
     try {
-      console.log(rockerFirebase.rockers.list(this.state.pageSize,this.state.actualPage,));
       const data = await rockerFirebase.rockers.list(
         this.state.pageSize,
         this.state.actualPage,

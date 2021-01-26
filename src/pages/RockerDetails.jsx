@@ -30,7 +30,6 @@ class RockerDetails extends React.Component {
     });
     try {
       const character = await rockerFirebase.rockers.read(this.state.rockerId);
-      console.log(character);
       this.setState({
         loading: false,
         character,

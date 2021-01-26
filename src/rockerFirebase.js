@@ -42,6 +42,15 @@ async function getRockerById(rockerId) {
         console.log("Error getting document:", error);
     });
 }
+
+function updateRocker(rockerId, rockerData) {
+    rockersRef.doc(rockerId).update(rockerData).then(() => {
+        console.log("Document successfully updated!");
+    })
+        .catch(error => {
+            console.error("Error updating document: ", error);
+        });
+}
 const rockerFirebase = {
     rockers: {
         list(pageSize, actualPage) {
@@ -54,8 +63,8 @@ const rockerFirebase = {
             return getRockerById(rockerId);
         },
         update(rockerId, rockerData) {
-            const rocker = getRockerById(rockerId);
-         },
+            updateRocker(rockerId, rockerData);
+        },
         remove(rockerId) { }
     }
 }

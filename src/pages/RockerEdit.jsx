@@ -2,7 +2,7 @@ import React from "react";
 import Rocker from "../components/Rocker";
 import Rockerform from "../components/Rockerform";
 import Loader from "../components/Loader";
-import api from "../api";
+import rockerFirebase from "../rockerFirebase";
 import "./styles/RockerEdit.css";
 class RockerEdit extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class RockerEdit extends React.Component {
       error: null,
     });
     try {
-      const data = await api.rockers.read(this.state.rockerId);
+      const data = await rockerFirebase.rockers.read(this.state.rockerId);
       this.setState({
         loading: false,
         form: data,
@@ -68,7 +68,7 @@ class RockerEdit extends React.Component {
       error: null,
     });
     try {
-      await api.rockers.update(this.state.rockerId, this.state.form);
+      await rockerFirebase.rockers.update(this.state.rockerId, this.state.form);
       this.setState({
         loading: false,
       });
