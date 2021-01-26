@@ -13,6 +13,7 @@ function About() {
             <li>Now im Frontend Developer, i have ReactJs and VueJs skills</li>
             <li>Im looking to work in a Startup because in the future, i would like create one</li>
             <li>Take a look at my LinkedIn profile or my Github repositories, below in the footer you can find them</li>
+            <li>This project was made with the help of <b>ReactJs</b> and <b>Firestore</b></li>            
         </section>
       </div>
     </div>

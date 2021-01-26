@@ -21,6 +21,7 @@ function Home() {
           <p>
             ¿Do you wanna see the cat? <Link to="/error">Click Me</Link>
           </p>
+          <p>This project was made with the help of <b>ReactJs</b> and <b>Firestore</b></p>
         </section>
       </div>
     </div>

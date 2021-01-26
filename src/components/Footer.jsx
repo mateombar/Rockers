@@ -26,6 +26,7 @@ function Footer() {
           <pre>
             <i className="far fa-copyright"></i> 2020
           </pre>
+          <center><pre>Don't be Evil</pre></center>
         </div>
       </section>
     </footer>
