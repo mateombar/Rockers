@@ -12,21 +12,6 @@ async function getRockerList(pageSize, actualPage) {
         .catch(error => {
             console.log("Error getting documents: ", error);
         });
-    // let data = [];
-    // await rockersRef.orderBy("date", 'desc').onSnapshot(snapshot => {
-    //         snapshot.docChanges().forEach(change => {
-    //             if (change.type === "added") {
-    //                 data.push(change.doc.data());
-    //             }
-    //             if (change.type === "modified") {
-    //                 console.log("Modified city: ", change.doc.data());
-    //             }
-    //             if (change.type === "removed") {
-    //                 console.log("Removed city: ", change.doc.data());
-    //             }
-    //         });
-    //     });
-    //     console.log(data);
     const firstItem = (pageSize * actualPage) - pageSize
     const pages = Math.ceil(data.length / pageSize)
     let rockers = {};
