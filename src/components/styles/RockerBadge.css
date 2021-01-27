@@ -1,43 +1,58 @@
-.rocker_badge{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 10px 0px;
-    background-color: #55957446;
-    border-radius: 10px;
+.rocker_badge {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0px;
+  background-color: #55957446;
+  border-radius: 10px;
 }
-.rocker_avatar{
-    width: 100px;
+.rocker_avatar {
+  width: 150px;
+  padding: 5px;
+}
+.rocker_avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+.rocker_info {
+  padding: 5px 10px;
+  width: 300px;
+  font-size: 0.9rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .rocker_badge {
     padding: 5px;
+  }
+  .rocker_avatar {
+    width: 40%;
+    padding: 0px;
+  }
+  .rocker_info {
+    padding: 0px 10px;
+    width: 60%;
+  }
+  .rocker_info p {
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
-.rocker_avatar img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50px;
-}
-
-.rocker_info{
-    padding: 5px 10px;
-    width: 300px;
-    font-size: 0.9rem;
-}
-
-@media only screen and (max-width: 400px){
-    .rocker_badge{
-        padding: 5px;
-        
-    }
-    .rocker_avatar{
-        width: 30%;
-        padding: 0px;
-    }
-    .rocker_info{
-        padding: 0px 10px;
-        width: 70%;
-    }
-    .rocker_avatar img{
-        width: 70px;
-        height: 70px;
-    }
+@media only screen and (max-width: 400px) {
+  .rocker_avatar {
+    width: 30%;
+    padding: 0px;
+  }
+  .rocker_info {
+    padding: 0px 10px;
+    width: 70%;
+  }
+  .rocker_avatar img {
+    width: 70px;
+    height: 70px;
+  }
 }
