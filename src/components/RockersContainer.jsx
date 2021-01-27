@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import RockerBadge from "./RockerBadge";
 import { Link } from "react-router-dom";
+import RockerBadge from "./RockerBadge";
+import './styles/RockersContainer.css';
 function useSearchRockers(rockers) {
   const [query, setQuery] = useState("");
   const [filteredRockers, setFilteredRockers] = useState(rockers);

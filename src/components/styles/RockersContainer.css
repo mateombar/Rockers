@@ -1,0 +1,75 @@
+.card .filter {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.filter .filter__input {
+  width: 50%;
+  height: 30px;
+  padding: 0.3rem;
+  border: 2px solid #559574;
+  border-radius: 25px;
+  outline: none;
+}
+.filter__select label {
+  padding: 0.5rem;  
+}
+.filter__select select {
+  width: 100px;
+  height: 30px;
+  padding: 0.3rem;
+  border: 2px solid #559574;
+  border-radius: 25px;
+  outline: none;
+}
+
+.card .badges__container {
+  margin-top: 3%;
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
+.badges__container .badges__container--pagination {
+  margin: 10px 0;
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.badges__container--pagination button {
+  width: 70px;
+  height: 80%;
+  padding: 0.3rem;
+  border: 2px solid #559574;
+  color: white;
+  background-color: #559574;
+  border-radius: 25px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.badges__container--list {
+  width: 90%;
+}
+.badges__container--list a {
+  text-decoration: none;
+  color: black;
+}
+@media only screen and (max-width: 900px) {
+  .filter .filter__input {
+    width: 40%;
+  }
+  .filter__select select {
+    width: 50px;
+  }
+  .filter__select label {
+    font-size: 0.9rem;
+  }
+  .rocker__container .badges__container {
+    width: 90%;
+  }
+}
