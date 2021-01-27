@@ -4,7 +4,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  background-image: linear-gradient(to right, #559574 , #6bc295);
+  background-image: linear-gradient(to right, #559574, #6bc295);
 }
 .icon {
   color: white;
@@ -39,30 +39,29 @@
   text-align: center;
   padding: 14px 16px;
 }
-.banner{
-  background-image: linear-gradient(to right, #559574 , #6bc295);
+.banner {
+  background-image: linear-gradient(to right, #559574, #6bc295);
   display: flex;
-  justify-content: center ;
+  justify-content: center;
   padding: 0px 30px 30px 30px;
   height: 150px;
 }
 
-.banner .banner__info{
-  margin-top: -40px;
+.banner .banner__info {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
-.banner .banner__info img{
+.banner .banner__info img {
   width: 3rem;
 }
-.banner .banner__info h2{
+.banner .banner__info h2 {
   font-size: 3rem;
   color: white;
 }
 
-@media only screen and (max-width: 600px){
-  .banner{
+@media only screen and (max-width: 600px) {
+  .banner {
     padding: 0px 5px 5px 5px;
   }
 }
